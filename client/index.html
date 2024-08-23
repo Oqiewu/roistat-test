@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Форма заявки</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        form { 
+            margin: 0 auto;
+            max-width: 400px;
+        }
+        input, button[type="submit"] {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        #timer {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        #refreshTokenButton {
+            cursor: pointer;
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            box-sizing: border-box;
+        }
+        #refreshStatus {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 16px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div id="timer">Время на сайте: 00:00:00</div>
+    
+    <form id="leadForm" method="POST">
+        <input type="text" name="name" placeholder="Имя" required><br>
+        <input type="email" name="email" placeholder="Email" required><br>
+        <input type="tel" name="phone" placeholder="Телефон" required><br>
+        <input type="number" name="price" placeholder="Цена" required><br>
+        <button type="submit">Отправить</button>
+    </form>
+
+    <button id="refreshTokenButton">Обновить токен</button>
+    <div id="refreshStatus"></div>
+
+    <script src="js/Timer.js"></script>
+    <script src="js/FormHandler.js"></script>
+    <script src="js/refreshToken.js"></script>
+    <script>
+        const timer = new Timer('timer');
+        const formHandler = new FormHandler('leadForm', timer);
+        
+        timer.start();
+    </script>
+</body>
+</html>
